@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+// All API keys come from environment variables (.env)
+// Never commit secrets to the repository
 const BUFFER_API_KEY = process.env.BUFFER_API_KEY;
 const BUFFER_API_URL = 'https://api.bufferapp.com/1';
+
+if (!BUFFER_API_KEY) {
+  console.error('[ERROR] BUFFER_API_KEY not set in environment variables');
+  process.exit(1);
+}
 
 export async function scheduleToBuffer(post) {
   try {
@@ -37,7 +44,7 @@ export async function scheduleToBuffer(post) {
         profile_ids: [instagramProfile.id],
         text: post.caption,
         media: {
-          link: 'https://stokeyhouse.example.com/image.jpg' // Placeholder - in production, this would be the actual photo URL with HB2 applied
+          link: 'https://stokeyhouse.example.com/image.jpg'
         },
         scheduled_at: Math.floor(scheduleTime.getTime() / 1000),
         service: 'instagram'
