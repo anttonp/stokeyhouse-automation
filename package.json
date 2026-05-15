@@ -1,0 +1,27 @@
+{
+  "name": "stokeyhouse-instagram-automation",
+  "version": "1.0.0",
+  "description": "Automated Instagram posting for Stokeyhouse Victorian renovation",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test-post.js"
+  },
+  "keywords": ["instagram", "automation", "renovation"],
+  "author": "Antton & Lucy",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-cron": "^3.0.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "google-auth-library": "^9.0.0",
+    "sqlite3": "^5.1.6",
+    "nanoid": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
