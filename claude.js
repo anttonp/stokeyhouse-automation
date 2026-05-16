@@ -11,7 +11,7 @@ PROPERTY & TIMELINE:
 - Acquisition: First viewing April 2025, purchased Nov 4, 2025 (6-month process)
 - Work started: End November 2025
 - Strip-out: December 2025
-- Discoveries: 
+- Discoveries:
   * Back floor/joists completely removed (unplanned) - December surprise
     * Concrete slab removal required (humidity issue)
       * Both discoveries delayed project ~3 months
@@ -50,8 +50,7 @@ PROPERTY & TIMELINE:
                 `;
 
 export async function generateInstagramPost() {
-   // Check API key inside the function
-  const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
+   const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
    if (!CLAUDE_API_KEY) {
         throw new Error('CLAUDE_API_KEY not set in environment variables');
    }
@@ -100,7 +99,13 @@ export async function generateInstagramPost() {
      return post;
 
   } catch (error) {
-       console.error('[CLAUDE ERROR]', error.message);
+       // Log the actual API error response for debugging
+     if (error.response) {
+            console.error('[CLAUDE ERROR] Status:', error.response.status);
+            console.error('[CLAUDE ERROR] Response data:', JSON.stringify(error.response.data));
+     } else {
+            console.error('[CLAUDE ERROR]', error.message);
+     }
        throw error;
   }
 }
