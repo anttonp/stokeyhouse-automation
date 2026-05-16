@@ -9,11 +9,11 @@ import {
   getAuthUrl, 
   handleAuthCallback,
   setRefreshToken,
-  getPhotosFromAlbum,
+  getPhotosFromDriveFolder,
   downloadPhotoAsBase64,
   analyzePhotoWithClaude,
   applyHB2ColorGrading
-} from './google-photos.js';
+} from './google-drive.js';
 
 dotenv.config();
 
@@ -93,9 +93,9 @@ async function generateInstagramPostWithPhoto() {
     console.log('[POST GEN] Step 1: Generating caption...');
     const captionPost = await generateInstagramPost();
 
-    // Step 2: Fetch photos from Google Photos
-    console.log('[POST GEN] Step 2: Fetching photos from Google Photos...');
-    const photos = await getPhotosFromAlbum();
+    // Step 2: Fetch photos from Google Drive folder
+    console.log('[POST GEN] Step 2: Fetching photos from Google Drive folder...');
+    const photos = await getPhotosFromDriveFolder();
     
     if (!photos || photos.length === 0) {
       throw new Error('No photos found in Google Photos album');
