@@ -23,7 +23,19 @@ app.get('/health', (req, res) => {
 // Manual post generation endpoint (for testing)
 app.post('/generate-post', async (req, res) => {
   try {
-    console.log('[API] Generating post manually...');
+    console.log('[API] Generating post manually (POST)...');
+    const post = await generateInstagramPost();
+    res.json({ success: true, post });
+  } catch (error) {
+    console.error('[ERROR] Post generation failed:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// GET endpoint for easy testing in browser
+app.get('/generate-post', async (req, res) => {
+  try {
+    console.log('[API] Generating post manually (GET)...');
     const post = await generateInstagramPost();
     res.json({ success: true, post });
   } catch (error) {
